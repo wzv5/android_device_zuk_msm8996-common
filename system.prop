@@ -26,6 +26,9 @@ bt.max.hfpclient.connections=1
 qcom.bluetooth.soc=rome
 ro.bluetooth.emb_wp_mode=true
 ro.bluetooth.wipower=true
+ro.bluetooth.hfp.ver=1.7
+ro.bluetooth.sap=true
+ro.bluetooth.dun=true
 
 # Camera
 media.camera.ts.monotonic=0
@@ -127,6 +130,3 @@ persist.data.df.dev_name=rmnet_usb0
 
 # Storage
 ro.sys.sdcardfs=true
-
-# TimeService
-persist.timed.enable=true

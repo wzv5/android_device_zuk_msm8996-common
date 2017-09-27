@@ -115,6 +115,13 @@ TARGET_CAMERASERVICE_CLOSES_NATIVE_HANDLES := true
 
 # Charger
 BOARD_CHARGER_ENABLE_SUSPEND := true
+BOARD_CHARGING_CMDLINE_NAME  := "androidboot.mode"
+BOARD_CHARGING_CMDLINE_VALUE := "usb_chg"
+BACKLIGHT_PATH := "/sys/class/leds/lcd-backlight/brightness"
+BLINK_PATH     := "/sys/class/leds/led:rgb_red/blink"
+RED_LED_PATH   := "/sys/class/leds/led:rgb_red/brightness"
+GREEN_LED_PATH := "/sys/class/leds/led:rgb_green/brightness"
+BLUE_LED_PATH  := "/sys/class/leds/led:rgb_blue/brightness"
 
 # CM Hardware
 BOARD_HARDWARE_CLASS += $(VENDOR_PATH)/cmhw
@@ -149,8 +156,6 @@ MAX_EGL_CACHE_SIZE := 2048*1024
 OVERRIDE_RS_DRIVER:= libRSDriver_adreno.so
 MAX_VIRTUAL_DISPLAY_DIMENSION := 4096
 TARGET_FORCE_HWC_FOR_VIRTUAL_DISPLAYS := true
-VSYNC_EVENT_PHASE_OFFSET_NS := 2000000
-SF_VSYNC_EVENT_PHASE_OFFSET_NS := 6000000
 
 # Filesystem
 TARGET_ANDROID_FILESYSTEM_CONFIG_H := $(VENDOR_PATH)/android_filesystem_config.h
@@ -212,5 +217,4 @@ HOSTAPD_VERSION := VER_0_8_X
 WIFI_DRIVER_FW_PATH_AP := "ap"
 WIFI_DRIVER_FW_PATH_STA := "sta"
 WIFI_DRIVER_FW_PATH_P2P := "p2p"
-WIFI_DRIVER_MODULE_NAME := "wlan"
 WPA_SUPPLICANT_VERSION := VER_0_8_X
