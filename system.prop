@@ -129,7 +129,7 @@ persist.data.df.iwlan_mux=9
 persist.data.df.dev_name=rmnet_usb0
 
 # Storage
-ro.sys.sdcardfs=true
+persist.fuse_sdcard=true
 
 # USB
 sys.usb.controller=6a00000.dwc3
