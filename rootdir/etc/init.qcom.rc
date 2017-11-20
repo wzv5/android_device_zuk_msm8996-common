@@ -27,7 +27,6 @@
 
 import init.qcom.power.rc
 import init.qcom.usb.rc
-import init.target.rc
 import init.zuk.rc
 
 on early-init
@@ -319,6 +318,9 @@ on boot
     # change this when HAL3 is working
     setprop persist.camera.HAL3.enabled 0
 
+    # disable camera's gyro as soon as possible
+    setprop persist.camera.gyro.disable 1
+
 # msm specific files that need to be created on /data
 on post-fs-data
     mkdir /tombstones/modem 0771 system system
@@ -529,23 +531,6 @@ service qseecomd /system/bin/qseecomd
    group root
    writepid /dev/cpuset/system-background/tasks
 
-service perfd /system/vendor/bin/perfd
-    class main
-    user root
-    group root readproc
-    disabled
-    socket perfd seqpacket 0666 root system
-    writepid /dev/cpuset/system-background/tasks
-
-service thermal-engine /system/vendor/bin/thermal-engine
-   class main
-   user root
-   socket thermal-send-client stream 0666 system system
-   socket thermal-recv-client stream 0660 system system
-   socket thermal-recv-passive-client stream 0666 system system
-   group root
-   writepid /dev/cpuset/system-background/tasks
-
 service timekeep /system/bin/timekeep restore
     class late_start
     user root
@@ -629,20 +614,6 @@ service readmac /system/bin/readmac
     user root
     group root
     oneshot
-
-service energy-awareness /system/bin/energy-awareness
-    class main
-    user root
-    group system
-    oneshot
-
-service iop /system/bin/iop
-    class main
-    user root
-    group root
-    disabled
-    socket iop seqpacket 0666 root system
-    writepid /dev/cpuset/system-background/tasks
 
 service ssr_setup /system/bin/ssr_setup
     oneshot
@@ -900,21 +871,6 @@ service ril-daemon2 /system/bin/rild -c 2
     user root
     group radio cache inet misc audio log readproc wakelock qcom_diag
 
-service charger /charger
-    class charger
-    group system graphics
-    seclabel u:r:healthd:s0
-
-service qbcharger /charger -m 1
-    disabled
-    oneshot
-
-on property:sys.qbcharger.enable=true
-    start qbcharger
-
-on property:sys.qbcharger.enable=false
-    stop qbcharger
-
 service msm_irqbalance /system/bin/msm_irqbalance -f /system/vendor/etc/msm_irqbalance.conf
     class main
     user root
@@ -927,6 +883,18 @@ service qseeproxydaemon /system/vendor/bin/qseeproxydaemon
     user system
     group system
     writepid /dev/cpuset/system-background/tasks
+
+service thermal-engine /system/vendor/bin/thermal-engine
+   class main
+   user root
+   socket thermal-send-client stream 0666 system system
+   socket thermal-recv-client stream 0660 system system
+   socket thermal-recv-passive-client stream 0666 system system
+   group root
+   socket thermal-send-client stream 0666 system system
+   socket thermal-recv-client stream 0660 system system
+   socket thermal-recv-passive-client stream 0666 system system
+   writepid /dev/cpuset/system-background/tasks
 
 # Slpi restart
 on property:slpi.restart=1
