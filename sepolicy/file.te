@@ -11,3 +11,4 @@ type debugfs_rmts, debugfs_type, fs_type;
 type thermal_data_file, file_type;
 type netmgrd_data_file, file_type;
 type sysfs_timekeep, fs_type, sysfs_type;
+type sysfs_overfreq, fs_type, sysfs_type;
