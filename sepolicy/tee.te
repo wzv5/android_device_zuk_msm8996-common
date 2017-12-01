@@ -1,0 +1,2 @@
+allow tee persist_file:dir rw_dir_perms;
+allow tee persist_file:file rw_file_perms;
