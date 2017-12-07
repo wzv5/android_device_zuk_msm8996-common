@@ -118,7 +118,7 @@ on enable-low-power
     write /sys/devices/soc/soc:qcom,bcl/mode "enable"
 
     # Input boost config
-    write /sys/module/cpu_boost/parameters/input_boost_freq "0:1324800 1:1324800"
+    write /sys/module/cpu_boost/parameters/input_boost_freq "0:1324800 2:1324800"
     write /sys/module/cpu_boost/parameters/input_boost_ms 40
 
     # Set big.LITTLE scheduler parameters
