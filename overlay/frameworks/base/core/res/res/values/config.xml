@@ -486,4 +486,7 @@
         <item>com.amap.android.location</item>
     </string-array>
 
+    <!-- Remote server that can provide NTP responses. -->
+    <string translatable="false" name="config_ntpServer">ntp1.aliyun.com</string>
+
 </resources>
