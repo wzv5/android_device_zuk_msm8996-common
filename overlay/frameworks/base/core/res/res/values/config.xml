@@ -444,9 +444,13 @@
 
     <string-array translatable="false" name="config_defaultPinnerServiceFiles">
         <item>"/system/framework/arm64/boot-framework.oat"</item>
+        <item>"/system/framework/arm64/boot-framework.vdex"</item>
         <item>"/system/framework/oat/arm64/services.odex"</item>
+        <item>"/system/framework/oat/arm64/services.vdex"</item>
         <item>"/system/framework/arm64/boot.oat"</item>
+        <item>"/system/framework/arm64/boot.vdex"</item>
         <item>"/system/framework/arm64/boot-core-libart.oat"</item>
+        <item>"/system/framework/arm64/boot-core-libart.vdex"</item>
     </string-array>
 
     <!-- Device configuration setting the minfree tunable in the lowmemorykiller in the kernel.
@@ -473,6 +477,10 @@
     <!-- Boolean indicating whether the HWC setColorTransform function can be performed efficiently
          in hardware. -->
     <bool name="config_setColorTransformAccelerated">true</bool>
+
+    <!-- The duration (in milliseconds) that the radio will scan for a signal
+         when there's no network connection. If the scan doesn't timeout, use zero -->
+    <integer name="config_radioScanningTimeout">5000</integer>
 
     <bool name="config_enableNetworkLocationOverlay" translatable="false">false</bool>
     <bool name="config_enableFusedLocationOverlay" translatable="false">false</bool>
