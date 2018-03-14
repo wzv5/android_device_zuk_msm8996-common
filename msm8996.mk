@@ -395,3 +395,18 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/thermal-engine.conf:$(TARGET_COPY_OUT_VENDOR)/etc/thermal-engine.conf
+
+# Alipay
+PRODUCT_PACKAGES += \
+    org.ifaa.android.manager
+
+PRODUCT_BOOT_JARS += \
+    org.ifaa.android.manager
+
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/ifaa-vendor/bin/ifaad:system/bin/ifaad \
+    $(LOCAL_PATH)/ifaa-vendor/lib/libifaa_daemon.so:system/lib/libifaa_daemon.so \
+    $(LOCAL_PATH)/ifaa-vendor/lib/libifaa_jni.so:system/lib/libifaa_jni.so \
+    $(LOCAL_PATH)/ifaa-vendor/lib64/libifaa_daemon.so:system/lib64/libifaa_daemon.so \
+    $(LOCAL_PATH)/ifaa-vendor/lib64/libifaa_jni.so:system/lib64/libifaa_jni.so \
+    $(LOCAL_PATH)/ifaa-vendor/lib64/lib_ifaa_tac.so:system/lib64/lib_ifaa_tac.so

@@ -617,3 +617,8 @@ on property:vold.decrypt=trigger_restart_min_framework
 on property:vold.decrypt=trigger_restart_framework
     start audio-hal-2-0
     start config_bt_addr
+
+service ifaadaemon /system/bin/ifaad
+    class late_start
+    user system
+    group system
