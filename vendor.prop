@@ -82,6 +82,7 @@ vendor.audio.hw.aac.encoder=true
 
 # Media
 vendor.vidc.enc.disable.pq=true
+vidc.enc.dcvs.extra-buff-count=2
 vendor.audio.flac.sw.decoder.24bit=true
 media.aac_51_output_enabled=true
 mm.enable.smoothstreaming=true
@@ -160,8 +161,3 @@ persist.timed.enable=true
 
 # FRP
 ro.frp.pst=/dev/block/bootdevice/by-name/frp
-
-# USB
-sys.usb.ffs.max_write=524288
-sys.usb.ffs.max_read=524288
-sys.usb.mtp.device_type=3
