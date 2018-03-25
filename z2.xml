@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+
+    <remote name="zuk-devs" fetch="https://github.com/zuk-devs/" revision="lineage-15.1"/>
+    <remote name="wzv5" fetch="https://github.com/wzv5/" revision="sm-4.1"/>
+
+    <project path="kernel/zuk/msm8996" name="android_kernel_zuk_msm8996" remote="wzv5" revision="lineage-15.1"/>
+    <project path="device/zuk/msm8996-common" name="android_device_zuk_msm8996-common" remote="wzv5"/>
+    <project path="device/zuk/z2_plus" name="android_device_zuk_z2_plus" remote="wzv5"/>
+    <project path="vendor/zuk" name="proprietary_vendor_zuk" remote="wzv5" revision="lineage-15.1"/>
+
+    <project path="packages/apps/FlipFlap" name="LineageOS/android_packages_apps_FlipFlap"/>
+    <project path="packages/resources/devicesettings" name="LineageOS/android_packages_resources_devicesettings" />
+
+    <project path="prebuilts/gcc/linux-x86/aarch64/aarch64-linux-gnu-7.2" name="gcc-prebuilts" remote="zuk-devs" revision="7.2.1"/>
+
+    <remove-project name="SudaMod/android_packages_apps_CMUpdater"/>
+</manifest>
