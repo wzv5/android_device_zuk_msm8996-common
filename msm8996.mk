@@ -403,12 +403,3 @@ PRODUCT_PACKAGES += \
 PRODUCT_BOOT_JARS += \
     org.ifaa.android.manager
 
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/ifaa-vendor/bin/ifaad:$(TARGET_COPY_OUT_VENDOR)/bin/ifaad \
-    $(LOCAL_PATH)/ifaa-vendor/lib/libifaa_daemon.so:$(TARGET_COPY_OUT_VENDOR)/lib/libifaa_daemon.so \
-    $(LOCAL_PATH)/ifaa-vendor/lib/libifaa_jni.so:$(TARGET_COPY_OUT_VENDOR)/lib/libifaa_jni.so \
-    $(LOCAL_PATH)/ifaa-vendor/lib64/libifaa_daemon.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libifaa_daemon.so \
-    $(LOCAL_PATH)/ifaa-vendor/lib64/libifaa_jni.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libifaa_jni.so \
-    $(LOCAL_PATH)/ifaa-vendor/lib64/lib_ifaa_tac.so:$(TARGET_COPY_OUT_VENDOR)/lib64/lib_ifaa_tac.so \
-    $(LOCAL_PATH)/ifaa-vendor/etc/init/ifaadaemon.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/ifaadaemon.rc
-

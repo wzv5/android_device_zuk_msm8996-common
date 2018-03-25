@@ -1,5 +1,0 @@
-service ifaadaemon /vendor/bin/ifaad
-    class late_start
-    user system
-    group system
-
