@@ -63,13 +63,17 @@ vendor/lib64/soundfx/libshoebox.so
 vendor/etc/audio_tuning_mixer.txt
 
 # Bluetooth
+# aptX - from marlin - OPM1.171019.011
 vendor/bin/wcnss_filter
+vendor/lib64/libaptX_encoder.so|0cebad28afcf29f931bdc2d24fce2730dc882ecf
+vendor/lib64/libaptXHD_encoder.so|90f47f10af28b3ead143200cb4370b847c513127
+vendor/lib/libaptX_encoder.so|984739a0bc968e18f75ced205733fe3f51c2d4f0
+vendor/lib/libaptXHD_encoder.so|974c486e4ca03faa0713553d9dfe2995ac93e01c
 vendor/lib64/libbtnv.so
 vendor/lib/libbtnv.so
 
 # Camera
-lib/libtrueportrait.so
-vendor/bin/mm-qcamera-daemon|c0ea4d468ee6693f92460bb76b93880204fb8eda
+vendor/bin/mm-qcamera-daemon
 vendor/lib/libchromaflash.so
 vendor/lib/libflash_pmic.so
 vendor/lib/libjpegdhw.so
@@ -113,7 +117,7 @@ vendor/lib/libmmcamera2_memleak.so
 vendor/lib/libmmcamera2_pp_buf_mgr.so
 vendor/lib/libmmcamera2_pproc_modules.so
 vendor/lib/libmmcamera2_q3a_core.so
-vendor/lib/libmmcamera2_sensor_modules.so
+vendor/lib/libmmcamera2_sensor_modules.so|efe8409a0380e87c68eaf3ad03ed0db3a27c8762
 vendor/lib/libmmcamera2_stats_algorithm.so
 vendor/lib/libmmcamera2_stats_modules.so
 vendor/lib/libmmjpeg.so
@@ -144,7 +148,7 @@ etc/firmware/cpp_firmware_v1_6_0.fw:vendor/firmware/cpp_firmware_v1_6_0.fw
 etc/firmware/cpp_firmware_v1_8_0.fw:vendor/firmware/cpp_firmware_v1_8_0.fw
 
 # Camera ov8865
-etc/camera/ov8865_chromatix.xml
+etc/camera/ov8865_chromatix.xml:vendor/etc/camera/ov8865_chromatix.xml
 vendor/lib/libchromatix_ov8865_hfr_60.so
 vendor/lib/libchromatix_ov8865_cpp_video.so
 vendor/lib/libchromatix_ov8865_common.so
@@ -268,7 +272,7 @@ vendor/lib64/libwqe.so
 vendor/lib64/libxml.so
 
 # Fingerprint
-lib64/hw/fingerprint.qcom.so
+lib64/hw/fingerprint.qcom.so:vendor/lib64/hw/fingerprint.qcom.so
 vendor/lib64/libqvop-service.so
 vendor/lib/libqvop-service.so
 
@@ -428,7 +432,6 @@ lib/lib-imscamera.so
 lib/lib-imsvideocodec.so
 lib/lib-imsvtextutils.so
 lib/lib-imsvtutils.so
-lib/libdiag_system.so
 lib/libimscamera_jni.so
 lib/libimsmedia_jni.so
 lib/librcc.so
@@ -439,7 +442,6 @@ lib64/lib-imsvideocodec.so
 lib64/lib-imsvt.so
 lib64/lib-imsvtextutils.so
 lib64/lib-imsvtutils.so
-lib64/libdiag_system.so
 lib64/libimscamera_jni.so
 lib64/libimsmedia_jni.so
 lib64/librcc.so
@@ -697,13 +699,13 @@ vendor/lib64/libthermalioctl.so
 vendor/bin/time_daemon|8ea7d65a65c1d50afc6553ad52848b454c62563d
 vendor/lib64/libtime_genoff.so|7683a85cae9f17cd535e8960fceda1d6831074a0
 
-# TUI - from LA.UM.6.5.r1-04300-8x96.0
-lib/vendor.qti.hardware.tui_comm@1.0.so|85df6c84260eabf1a40dca99ff26ad6cc94bc73f
-lib64/vendor.qti.hardware.tui_comm@1.0.so|e03d63f1d0f0a02dba9b1147ae642e7b55286f87
-vendor/bin/hw/vendor.qti.hardware.tui_comm@1.0-service-qti|3328d433e889426d16fbae33a3304d783c70c0d5
-vendor/etc/init/vendor.qti.hardware.tui_comm@1.0-service-qti.rc|2cfc563d7e1579374f001c94588fae7835a12ffc
-vendor/lib/vendor.qti.hardware.tui_comm@1.0_vendor.so|193bd9cc89f6ff208ec5e5fa62e553e7f797c485
-vendor/lib64/vendor.qti.hardware.tui_comm@1.0_vendor.so|1d948a6c9b1993b8d8543b7a778b27d3f9408fb0
+# TUI
+lib/vendor.qti.hardware.tui_comm@1.0.so
+lib64/vendor.qti.hardware.tui_comm@1.0.so
+vendor/bin/hw/vendor.qti.hardware.tui_comm@1.0-service-qti
+vendor/etc/init/vendor.qti.hardware.tui_comm@1.0-service-qti.rc
+vendor/lib/vendor.qti.hardware.tui_comm@1.0_vendor.so
+vendor/lib64/vendor.qti.hardware.tui_comm@1.0_vendor.so
 
 # Widevine DRM - from marlin - OPM1.171019.011
 vendor/bin/hw/android.hardware.drm@1.0-service.widevine|fd6e14710c196fdd4131afe2ce10c4a5be1b309c
@@ -712,4 +714,8 @@ vendor/lib/libwvhidl.so|f7288f7a7ed6765bd1d80d639a0aeb0c31eda795
 
 # WiFi
 vendor/bin/cnss-daemon
-vendor/firmware/bdwlan30.bin|45fdad0f323667fa95b88fa054e10a397fc8f0eb
+etc/firmware/bdwlan30.bin:vendor/firmware/bdwlan30.bin
+
+# HIDL - Dummy hidl base and manager blobs for older blobs.
+vendor/lib/android.hidl.base@1.0.so|7b695c37dd8f7edde1b3c8b25c46d7b73232e75b
+vendor/lib64/android.hidl.base@1.0.so|88d1bd3bd9853ba6c5b308e1045fc7ac06950d7b
