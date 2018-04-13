@@ -136,6 +136,7 @@ on enable-low-power
 
 on class_start:late_start
     trigger enable-low-power
+    start qcom-post-boot
 
 on property:dev.bootcomplete=1
     setprop sys.io.scheduler fiops
@@ -178,3 +179,9 @@ service perfd /system/vendor/bin/perfd
     disabled
     socket perfd seqpacket 0666 root system
     writepid /dev/cpuset/system-background/tasks
+
+service qcom-post-boot /system/bin/sh /system/etc/init.qcom.post_boot.sh
+    class late_start
+    user root
+    disabled
+    oneshot
