@@ -145,3 +145,9 @@ dalvik.vm.dex2oat-swap=false
 
 # FRP
 ro.frp.pst=/dev/block/bootdevice/by-name/frp
+
+# mipush
+ro.miui.ui.version.name=V9
+ro.miui.ui.version.code=7
+ro.miui.version.code_time=1505408400
+
