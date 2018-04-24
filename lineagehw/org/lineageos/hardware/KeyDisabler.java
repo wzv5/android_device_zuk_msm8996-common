@@ -16,8 +16,6 @@
 
 package org.lineageos.hardware;
 
-import org.lineageos.internal.util.FileUtils;
-
 /*
  * Disable capacitive keys
  *
@@ -29,17 +27,15 @@ import org.lineageos.internal.util.FileUtils;
 
 public class KeyDisabler {
 
-    private static String CONTROL_PATH = "/sys/devices/soc/soc:fpc1020/utouch_disable";
-
     public static boolean isSupported() {
-        return FileUtils.isFileWritable(CONTROL_PATH);
+        return true;
     }
 
     public static boolean isActive() {
-        return FileUtils.readOneLine(CONTROL_PATH).equals("1");
+        return true;
     }
 
     public static boolean setActive(boolean state) {
-        return FileUtils.writeLine(CONTROL_PATH, (state ? "1" : "0"));
+        return true;
     }
 }
