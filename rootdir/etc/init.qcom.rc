@@ -405,6 +405,12 @@ service port-bridge /vendor/bin/port-bridge
     disabled
     oneshot
 
+service atfwd /vendor/bin/ATFWD-daemon
+    class late_start
+    user system
+    group system radio
+    writepid /dev/cpuset/system-background/tasks
+
 service netmgrd /vendor/bin/netmgrd
     class main
     user root
@@ -631,5 +637,3 @@ on property:vold.decrypt=trigger_restart_min_framework
 
 on property:vold.decrypt=trigger_restart_framework
     start audio-hal-2-0
-    start config_bt_addr
-
