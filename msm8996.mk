@@ -392,7 +392,8 @@ PRODUCT_COPY_FILES += \
 
 PRODUCT_PACKAGES += \
     AMapNetworkLocation \
-    Brevent
+    Brevent \
+    Substratum
 
 # Fingerprint
 PRODUCT_PACKAGES += \
