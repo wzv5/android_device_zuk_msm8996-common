@@ -1,5 +1,6 @@
-# Copyright (C) 2013-2016, The CyanogenMod Project
-# Copyright (C) 2017-2018, The LineageOS Project
+#
+# Copyright (C) 2016 The CyanogenMod Project
+# Copyright (C) 2017-2018 The LineageOS Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -40,9 +41,6 @@ PRODUCT_AAPT_PREF_CONFIG := xxhdpi
 # Boot animation
 TARGET_SCREEN_HEIGHT := 1920
 TARGET_SCREEN_WIDTH := 1080
-
-# HWUI overrides
-$(call inherit-product, frameworks/native/build/phone-xxhdpi-3072-hwui-memory.mk)
 
 # Permissions
 PRODUCT_COPY_FILES += \
@@ -412,3 +410,5 @@ PRODUCT_PACKAGES += \
 PRODUCT_BOOT_JARS += \
     org.ifaa.android.manager
 
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/thermal-engine.conf:$(TARGET_COPY_OUT_VENDOR)/etc/thermal-engine.conf
