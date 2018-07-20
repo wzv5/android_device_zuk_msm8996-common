@@ -15,7 +15,7 @@
 -->
 
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:lineage="http://schemas.android.com/apk/res/lineageos.platform"
+        xmlns:mk="http://schemas.android.com/apk/res/mokee.platform"
         android:key="button_settings"
         android:title="@string/button_pref_title">
 
@@ -25,7 +25,7 @@
         android:summary="@string/disable_navkeys_summary"
         android:defaultValue="false" />
 
-    <org.lineageos.lineageparts.input.ButtonBacklightBrightness
+    <org.mokee.mkparts.input.ButtonBacklightBrightness
         android:key="button_backlight"
         android:title="@string/button_backlight_title"
         android:dialogTitle="@string/button_backlight_title"
@@ -35,7 +35,7 @@
         android:key="navigation_bar_category"
         android:title="@string/navigation_bar_category" >
 
-        <lineageos.preference.LineageSystemSettingSwitchPreference
+        <mokee.preference.MKSystemSettingSwitchPreference
                 android:key="navigation_bar_menu_arrow_keys"
                 android:title="@string/navigation_bar_arrow_keys_title"
                 android:summary="@string/navigation_bar_arrow_keys_summary"
@@ -80,7 +80,7 @@
         <PreferenceScreen
             android:key="power_menu"
             android:title="@string/power_menu_title"
-            android:fragment="org.lineageos.lineageparts.input.PowerMenuActions" />
+            android:fragment="org.mokee.mkparts.input.PowerMenuActions" />
 
         <SwitchPreference
             android:key="power_end_call"
@@ -88,12 +88,12 @@
             android:summary="@string/power_end_call_summary"
             android:persistent="false"/>
 
-        <lineageos.preference.LineageSystemSettingSwitchPreference
+        <mokee.preference.MKSystemSettingSwitchPreference
             android:key="torch_long_press_power_gesture"
             android:title="@string/torch_long_press_power_gesture_title"
             android:summary="@string/torch_long_press_power_gesture_desc"
             android:defaultValue="false"
-            lineage:requiresConfig="@*android:bool/config_supportLongPressPowerWhenNonInteractive" />
+            mk:requiresConfig="@*android:bool/config_supportLongPressPowerWhenNonInteractive" />
 
         <ListPreference
             android:key="torch_long_press_power_timeout"
@@ -110,7 +110,7 @@
         android:key="home_key"
         android:title="@string/hardware_keys_home_key_title" >
 
-        <lineageos.preference.LineageSystemSettingSwitchPreference
+        <mokee.preference.MKSystemSettingSwitchPreference
             android:key="home_wake_screen"
             android:title="@string/button_wake_title"
             android:defaultValue="true" />
@@ -157,7 +157,7 @@
         android:key="app_switch_key"
         android:title="@string/hardware_keys_swipe_left_key_title" >
 
-        <lineageos.preference.LineageSystemSettingSwitchPreference
+        <mokee.preference.MKSystemSettingSwitchPreference
             android:key="app_switch_wake_screen"
             android:title="@string/button_wake_title"
             android:defaultValue="false" />
@@ -190,18 +190,18 @@
         android:key="camera_key"
         android:title="@string/hardware_keys_camera_key_title">
 
-        <lineageos.preference.LineageSystemSettingSwitchPreference
+        <mokee.preference.MKSystemSettingSwitchPreference
             android:key="camera_wake_screen"
             android:title="@string/button_wake_title"
             android:defaultValue="false" />
 
-        <lineageos.preference.LineageSystemSettingSwitchPreference
+        <mokee.preference.MKSystemSettingSwitchPreference
             android:key="camera_sleep_on_release"
             android:title="@string/camera_sleep_on_release_title"
             android:summary="@string/camera_sleep_on_release_summary"
             android:defaultValue="false" />
 
-        <lineageos.preference.LineageSystemSettingSwitchPreference
+        <mokee.preference.MKSystemSettingSwitchPreference
             android:key="camera_launch"
             android:title="@string/camera_launch_title"
             android:summary="@string/camera_launch_summary"
@@ -213,24 +213,24 @@
         android:key="volume_keys"
         android:title="@string/hardware_keys_volume_keys_title" >
 
-        <lineageos.preference.LineageSystemSettingSwitchPreference
+        <mokee.preference.MKSystemSettingSwitchPreference
             android:key="volume_wake_screen"
             android:title="@string/button_wake_title"
             android:defaultValue="false" />
 
-        <lineageos.preference.LineageSystemSettingSwitchPreference
+        <mokee.preference.MKSystemSettingSwitchPreference
             android:key="volume_answer_call"
             android:title="@string/volume_answer_call_title"
             android:summary="@string/volume_answer_call_summary"
             android:defaultValue="false" />
 
-        <lineageos.preference.LineageSystemSettingSwitchPreference
+        <mokee.preference.MKSystemSettingSwitchPreference
             android:key="volbtn_music_controls"
             android:title="@string/volbtn_music_controls_title"
             android:summary="@string/volbtn_music_controls_summary"
             android:defaultValue="true" />
 
-        <lineageos.preference.LineageSystemSettingSwitchPreference
+        <mokee.preference.MKSystemSettingSwitchPreference
             android:key="volume_keys_control_ring_stream"
             android:title="@string/volume_keys_control_ring_stream_title"
             android:summaryOn="@string/volume_keys_control_ring_stream_summary_on"
@@ -255,13 +255,13 @@
         android:key="extras_category"
         android:title="@string/extras_title" >
 
-        <lineageos.preference.RemotePreference
+        <mokee.preference.RemotePreference
             android:key="additional_buttons"
             android:title="@string/additional_buttons_title"
-            lineage:requiresAction="org.lineageos.settings.device.ADDITIONAL_BUTTONS_SETTINGS">
+            mk:requiresAction="org.mokee.settings.device.ADDITIONAL_BUTTONS_SETTINGS">
             <intent
-                android:action="org.lineageos.settings.device.ADDITIONAL_BUTTONS_SETTINGS" />
-        </lineageos.preference.RemotePreference>
+                android:action="org.mokee.settings.device.ADDITIONAL_BUTTONS_SETTINGS" />
+        </mokee.preference.RemotePreference>
 
     </PreferenceCategory>
 

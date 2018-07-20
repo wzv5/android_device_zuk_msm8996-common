@@ -29,7 +29,7 @@ $(call inherit-product, vendor/zuk/msm8996-common/msm8996-common-vendor.mk)
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += \
     $(LOCAL_PATH)/overlay \
-    $(LOCAL_PATH)/overlay-lineage
+    $(LOCAL_PATH)/overlay-mokee
 
 PRODUCT_ENFORCE_RRO_TARGETS := \
     framework-res
@@ -266,7 +266,7 @@ PRODUCT_PACKAGES += \
 
 # LiveDisplay native
 PRODUCT_PACKAGES += \
-    vendor.lineage.livedisplay@1.0-service-sdm
+    vendor.mokee.livedisplay@1.0-service-sdm
 
 # Media
 PRODUCT_COPY_FILES += \

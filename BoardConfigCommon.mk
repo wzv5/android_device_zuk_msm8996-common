@@ -148,7 +148,7 @@ DEVICE_MATRIX_FILE := $(VENDOR_PATH)/compatibility_matrix.xml
 
 # Lineage Hardware
 BOARD_HARDWARE_CLASS += \
-    $(VENDOR_PATH)/lineagehw
+    $(VENDOR_PATH)/mkhw
 
 # Partitions
 BOARD_BOOTIMAGE_PARTITION_SIZE := 67108864

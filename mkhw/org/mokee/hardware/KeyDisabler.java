@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.lineageos.hardware;
+package org.mokee.hardware;
 
 /*
  * Disable capacitive keys
