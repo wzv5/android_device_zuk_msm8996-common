@@ -1,5 +1,6 @@
-# Copyright (C) 2013-2016, The CyanogenMod Project
-# Copyright (C) 2017-2018, The LineageOS Project
+#
+# Copyright (C) 2016 The CyanogenMod Project
+# Copyright (C) 2017-2018 The LineageOS Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,6 +13,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+#
 
 BOARD_VENDOR := zuk
 
@@ -47,7 +49,6 @@ BOARD_KERNEL_PAGESIZE := 4096
 BOARD_KERNEL_TAGS_OFFSET := 0x00000100
 BOARD_RAMDISK_OFFSET := 0x01000000
 TARGET_KERNEL_ARCH := arm64
-TARGET_KERNEL_HEADER_ARCH := arm64
 TARGET_KERNEL_SOURCE := kernel/zuk/msm8996
 TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-gnu-
 
@@ -57,6 +58,8 @@ TARGET_BOARD_PLATFORM_GPU := qcom-adreno530
 
 # Properties
 BOARD_PROPERTY_OVERRIDES_SPLIT_ENABLED := true
+BOARD_VNDK_RUNTIME_DISABLE := true
+BOARD_VNDK_VERSION := current
 PRODUCT_FULL_TREBLE_OVERRIDE := true
 TARGET_VENDOR_PROP += $(VENDOR_PATH)/vendor.prop
 
@@ -85,9 +88,7 @@ USE_XML_AUDIO_POLICY_CONF := 1
 
 # Bluetooth
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(VENDOR_PATH)/bluetooth
-BOARD_BLUETOOTH_BDROID_HCILP_INCLUDED := false
 BOARD_HAS_QCA_BT_ROME := true
-BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_QCOM := true
 QCOM_BT_USE_BTNV := true
 
@@ -111,7 +112,6 @@ endif
 WITH_DEXPREOPT_BOOT_IMG_AND_SYSTEM_SERVER_ONLY ?= true
 
 # Display
-BOARD_USES_ADRENO := true
 MAX_VIRTUAL_DISPLAY_DIMENSION := 4096
 TARGET_FORCE_HWC_FOR_VIRTUAL_DISPLAYS := true
 TARGET_USES_C2D_COMPOSITION := true
@@ -120,6 +120,7 @@ TARGET_USES_HWC2 := true
 TARGET_USES_ION := true
 TARGET_USES_OVERLAY := true
 USE_OPENGL_RENDERER := true
+
 MAX_EGL_CACHE_KEY_SIZE := 12*1024
 MAX_EGL_CACHE_SIZE := 2048*1024
 
@@ -145,15 +146,9 @@ USE_DEVICE_SPECIFIC_GPS := true
 DEVICE_MANIFEST_FILE := $(VENDOR_PATH)/manifest.xml
 DEVICE_MATRIX_FILE := $(VENDOR_PATH)/compatibility_matrix.xml
 
-# Init
-TARGET_PLATFORM_DEVICE_BASE := /devices/soc/
-
 # Lineage Hardware
 BOARD_HARDWARE_CLASS += \
     $(VENDOR_PATH)/lineagehw
-
-# Keymaster
-TARGET_PROVIDES_KEYMASTER := true
 
 # Partitions
 BOARD_BOOTIMAGE_PARTITION_SIZE := 67108864
@@ -166,6 +161,7 @@ BOARD_VENDORIMAGE_PARTITION_SIZE := 402653184
 BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_FLASH_BLOCK_SIZE := 262144 # (BOARD_KERNEL_PAGESIZE * 64)
 TARGET_COPY_OUT_VENDOR := vendor
+TARGET_USES_MKE2FS := true
 
 # Power
 TARGET_HAS_NO_WIFI_STATS := true
@@ -181,11 +177,11 @@ TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
 
 # RIL
-PROTOBUF_SUPPORTED := true
 TARGET_RIL_VARIANT := caf
 
 # SELinux
 include device/qcom/sepolicy/sepolicy.mk
+
 BOARD_SEPOLICY_DIRS += $(VENDOR_PATH)/sepolicy
 
 # Vendor init

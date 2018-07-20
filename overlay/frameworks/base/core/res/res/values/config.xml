@@ -362,8 +362,4 @@
 
     <!-- Remote server that can provide NTP responses. -->
     <string translatable="false" name="config_ntpServer">ntp1.aliyun.com</string>
-
-    <!-- The duration (in milliseconds) that the radio will scan for a signal
-         when there's no network connection. If the scan doesn't timeout, use zero -->
-    <integer name="config_radioScanningTimeout">10000</integer>
 </resources>
