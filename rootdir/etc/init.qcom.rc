@@ -64,6 +64,7 @@ on fs
 on late-fs
     # boot time fs tune
     write /sys/block/sda/queue/iostats 0
+    write /sys/block/sda/queue/scheduler cfq
     write /sys/block/sda/queue/iosched/slice_idle 0
     write /sys/block/sda/queue/read_ahead_kb 2048
     write /sys/block/sda/queue/nr_requests 256
@@ -108,10 +109,6 @@ on post-fs-data
     mkdir /data/misc/wifi/wpa_supplicant 0770 wifi wifi
     mkdir /data/misc/dhcp 0770 dhcp dhcp
     chown dhcp dhcp /data/misc/dhcp
-
-    # Create port-bridge log dir
-    mkdir /data/vendor/port_bridge 0770 radio radio
-    chmod 0770 /data/vendor/port_bridge
 
     # Create netmgr log dir
     mkdir /data/vendor/netmgr 0770 radio radio
@@ -262,7 +259,7 @@ on boot
     mkdir /persist/data/tz 0700 system system
     mkdir /persist/qc_senseid 0700 system system
     mkdir /persist/bms 0700 root system
-    mkdir /persist/wlan_bt 0700 system system
+    mkdir /persist/wlan_bt 0770 system system
     mkdir /persist/audio 0777 media audio
     mkdir /persist/display 0770 system graphics
     restorecon_recursive /persist
@@ -331,10 +328,10 @@ on property:sys.boot_completed=1
     swapon_all /vendor/etc/fstab.qcom
 
     # end boot time fs tune
-    write /sys/block/sda/queue/read_ahead_kb 512
-    write /sys/block/sda/queue/nr_requests 512
-    write /sys/block/dm-0/queue/read_ahead_kb 512
-    write /sys/block/dm-1/queue/read_ahead_kb 512
+    write /sys/block/sda/queue/read_ahead_kb 128
+    write /sys/block/sda/queue/nr_requests 128
+    write /sys/block/dm-0/queue/read_ahead_kb 128
+    write /sys/block/dm-1/queue/read_ahead_kb 128
     write /sys/block/sda/queue/iostats 1
 
     # CPE fw_name used by sound trigger HAL
@@ -353,6 +350,7 @@ service dpmQmiMgr /vendor/bin/dpmQmiMgr
     class main
     user system
     group radio system
+    writepid /dev/cpuset/system-background/tasks
 
 service irsc_util /vendor/bin/irsc_util "/vendor/etc/sec_config"
     class core
@@ -381,29 +379,9 @@ on property:wc_transport.start_hci=false
 service start_hci_filter /vendor/bin/wcnss_filter
     class late_start
     user bluetooth
-    group bluetooth oem_2901
-    seclabel u:r:wcnss_filter:s0
+    group bluetooth diag system wakelock
+    writepid /dev/cpuset/system-background/tasks
     disabled
-
-on property:wc_transport.start_root=true
-    start hci_filter_root
-
-on property:wc_transport.start_root=false
-    stop hci_filter_root
-
-service hci_filter_root /vendor/bin/wcnss_filter
-    class late_start
-    user bluetooth
-    group bluetooth oem_2901 system
-    seclabel u:r:wcnss_filter:s0
-    disabled
-
-service port-bridge /vendor/bin/port-bridge
-    class main
-    user radio system
-    group radio system inet
-    disabled
-    oneshot
 
 service atfwd /vendor/bin/ATFWD-daemon
     class late_start
@@ -456,7 +434,7 @@ service wpa_supplicant /vendor/bin/hw/wpa_supplicant \
     -iwlan0 -Dnl80211 -c/data/misc/wifi/wpa_supplicant.conf \
     -I/vendor/etc/wifi/wpa_supplicant_overlay.conf \
     -O/data/misc/wifi/sockets -puse_p2p_group_interface=1 \
-    -e/data/misc/wifi/entropy.bin -g@android:wpa_wlan0
+    -g@android:wpa_wlan0
     #   we will start as root and wpa_supplicant will switch to user wifi
     #   after setting up the capabilities required for WEXT
     #   user wifi
@@ -470,6 +448,7 @@ service cnss-daemon /vendor/bin/cnss-daemon -n -l
     class late_start
     user system
     group system inet net_admin wifi
+    writepid /dev/cpuset/system-background/tasks
 
 on property:sys.powerctl=*
     stop cnss-daemon
@@ -490,12 +469,11 @@ on property:ro.data.large_tcp_window_size=true
     write /proc/sys/net/ipv4/tcp_adv_win_scale  2
 
 service ril-daemon2 /vendor/bin/hw/rild -c 2
-    class late_start
-    socket rild2 stream 660 root radio
-    socket rild-debug2 stream 660 radio system
+    class main
     user radio
-    group radio cache inet misc audio sdcard_r sdcard_rw diag oem_2901 log
+    group radio cache inet misc audio log readproc wakelock oem_2901
     capabilities BLOCK_SUSPEND NET_ADMIN NET_RAW
+    writepid /dev/cpuset/system-background/tasks
 
 service qseecomd /vendor/bin/qseecomd
     class core
@@ -514,7 +492,7 @@ service qcamerasvr /vendor/bin/mm-qcamera-daemon
     class late_start
     user camera
     group camera system inet input graphics
-    writepid /dev/cpuset/system-background/tasks
+    writepid /dev/cpuset/camera-daemon/tasks
 
 # Start up peripheral manager
 service per_mgr /vendor/bin/pm-service
@@ -559,6 +537,7 @@ service adsprpcd /vendor/bin/adsprpcd
     class main
     user media
     group media
+    writepid /dev/cpuset/system-background/tasks
 
 service imsqmidaemon /vendor/bin/imsqmidaemon
     class main
@@ -582,6 +561,7 @@ service ims_rtp_daemon /vendor/bin/ims_rtp_daemon
     class main
     user system
     group radio diag inet log
+    writepid /dev/cpuset/system-background/tasks
     disabled
 
 service vendor.imsrcsservice /vendor/bin/imsrcsd
@@ -600,6 +580,7 @@ service ppd /vendor/bin/mm-pp-dpps
     user system
     group system graphics
     socket pps stream 0660 system system
+    writepid /dev/cpuset/system-background/tasks
 
 on property:init.svc.surfaceflinger=restarting
     stop hwcomposer-2-1

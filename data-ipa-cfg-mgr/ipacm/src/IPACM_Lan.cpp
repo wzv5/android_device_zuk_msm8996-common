@@ -575,7 +575,8 @@ void IPACM_Lan::event_callback(ipa_cm_event_id event, void *param)
 					if (data_wan_tether->is_sta == false)
 					{
 							ext_prop = IPACM_Iface::ipacmcfg->GetExtProp(IPA_IP_v4);
-							handle_wan_up_ex(ext_prop, IPA_IP_v4, 0);
+							handle_wan_up_ex(ext_prop, IPA_IP_v4,
+								IPACM_Wan::getXlat_Mux_Id());
 					} else {
 							handle_wan_up(IPA_IP_v4);
 					}
@@ -757,7 +758,14 @@ void IPACM_Lan::event_callback(ipa_cm_event_id event, void *param)
 						if (IPACM_Wan::backhaul_is_sta_mode == false) /* LTE */
 						{
 							ext_prop = IPACM_Iface::ipacmcfg->GetExtProp(data->prefix.iptype);
-							handle_wan_up_ex(ext_prop, data->prefix.iptype, 0);
+							if (data->prefix.iptype == IPA_IP_v4)
+							{
+								handle_wan_up_ex(ext_prop, data->prefix.iptype,
+									IPACM_Wan::getXlat_Mux_Id());
+							}
+							else {
+								handle_wan_up_ex(ext_prop, data->prefix.iptype, 0);
+							}
 						} else {
 							handle_wan_up(data->prefix.iptype); /* STA */
 						}
@@ -2869,8 +2877,10 @@ int IPACM_Lan::handle_down_evt()
 		IPACMDBG_H("LAN IF goes down, backhaul type %d\n", IPACM_Wan::backhaul_is_sta_mode);
 		handle_wan_down(IPACM_Wan::backhaul_is_sta_mode);
 #ifdef FEATURE_IPA_ANDROID
+#ifndef FEATURE_IPACM_HAL
 		/* Clean-up tethered-iface list */
 		IPACM_Wan::delete_tether_iface(IPA_IP_v4, ipa_if_num);
+#endif
 #endif
 	}
 
@@ -5505,6 +5515,7 @@ int IPACM_Lan::add_l2tp_flt_rule(ipa_ip_type iptype, uint8_t *dst_mac, uint32_t 
 	if(m_routing.GetRoutingTable(&rt_tbl) == false)
 	{
 		IPACMERR("Failed to get routing table.\n");
+		free(pFilteringTable);
 		return IPACM_FAILURE;
 	}
 
